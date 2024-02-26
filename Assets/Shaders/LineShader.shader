@@ -4,8 +4,8 @@ Shader "Unlit/LineShader"
    {
        _Color ("Main Color", Color) = (1,1,1,1)
        _MainTex("Main Texture", 2D) = "white"{}
-       _Start("Start", Float) = 0.4;
-       _Width("Width", Float) = 0.6;
+       _Start("Start", Float) = 0.5
+       _Width("Width", Float) = 0.5
    }
 
    SubShader
@@ -19,6 +19,8 @@ Shader "Unlit/LineShader"
 
        Pass
        {
+           Blend SrcAlpha OneMinusSrcAlpha
+
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
@@ -31,18 +33,20 @@ Shader "Unlit/LineShader"
            struct VertexInput
            {
                float4 vertex: POSITION;
+               float4 texcoord: TEXCOORD0;
            };
 
            struct VertexOutput
            {
                float4 pos: SV_POSITION;
+               float4 texcoord: TEXCOORD0;
            };
 
            VertexOutput vert(VertexInput v)
            {
                VertexOutput o;
                o.pos = UnityObjectToClipPos(v.vertex);
-
+               o.texcoord.xy = v.texcoord;
                return o;
            }
 
