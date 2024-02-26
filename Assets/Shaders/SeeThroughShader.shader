@@ -20,6 +20,7 @@ Shader "Unlit/SeeThroughShader"
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
+
            uniform half4 _Color;
 
            struct VertexInput

@@ -23,7 +23,9 @@ Shader "Unlit/SqrtShader"
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
+
            uniform half4 _Color;
+           uniform sampler2D _MainTex;
 
            struct VertexInput
            {
@@ -37,7 +39,6 @@ Shader "Unlit/SqrtShader"
                float4 texcoord: TEXCOORD0;
            };
 
-           uniform sampler2D _MainTex;
 
            VertexOutput vert(VertexInput v)
            {

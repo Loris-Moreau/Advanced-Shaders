@@ -18,6 +18,8 @@ Properties
 
            #include "UnityCG.cginc"
 
+           fixed4 _Color;
+
            struct appdata
            {
                float4 vertex : POSITION;
@@ -27,8 +29,6 @@ Properties
            {
                float4 vertex : SV_POSITION;
            };
-
-           fixed4 _Color;
 
            v2f vert (appdata v)
            {

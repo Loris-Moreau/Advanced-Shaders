@@ -25,6 +25,8 @@ Shader "Unlit/TextureShader"
            #pragma fragment frag
            uniform half4 _Color;
 
+           uniform sampler2D _MainTex;
+
            struct VertexInput
            {
                float4 vertex: POSITION;
@@ -36,8 +38,6 @@ Shader "Unlit/TextureShader"
                float4 pos: SV_POSITION;
                float4 texcoord: TEXCOORD0;
            };
-
-           uniform sampler2D _MainTex;
 
            VertexOutput vert(VertexInput v)
            {
