@@ -4,6 +4,10 @@ Shader "Unlit/SqrtShader"
    {
        _Color ("Main Color", Color) = (1,1,1,1)
        _MainTex("Main Texture", 2D) = "white"{}
+
+       _UseSqrt("Use Square Root ? (0, 1)", Int) = 1
+       _UseSin("Use Sin ? (0, 1)", Int) = 0
+       _UseTan("Use Tan ? (0, 1)", Int) = 0
    }
 
    SubShader
@@ -26,6 +30,9 @@ Shader "Unlit/SqrtShader"
 
            uniform half4 _Color;
            uniform sampler2D _MainTex;
+           bool _UseSqrt;
+           bool _UseSin;
+           bool _UseTan;
 
            struct VertexInput
            {
@@ -52,9 +59,23 @@ Shader "Unlit/SqrtShader"
            {
               float4 color = tex2D(_MainTex, i.texcoord) * _Color;
 
-              color.a = sqrt(i.texcoord.x);
-              // color.a = sin(i.texcoord.x * 20);
-              // color.a = tan(i.texcoord.x * 20);
+              if(_UseSqrt == 1)
+              {
+                color.a = sqrt(i.texcoord.x);
+              }
+              else if(_UseSin == 1)
+              {
+                color.a = sin(i.texcoord.x * 20);
+              }
+              else if(_UseTan == 1)
+              {
+                color.a = tan(i.texcoord.x * 20);
+              }
+              else 
+              {
+                float4 color = tex2D(_MainTex, i.texcoord) * _Color;
+                color.a = i.texcoord.x;
+              }
 
               return color;
            }

@@ -23,8 +23,8 @@ Shader "Unlit/TextureShader"
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
-           uniform half4 _Color;
 
+           uniform half4 _Color;
            uniform sampler2D _MainTex;
 
            struct VertexInput
