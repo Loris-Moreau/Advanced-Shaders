@@ -54,7 +54,7 @@ Shader "Unlit/GradientShader"
               float4 color = tex2D(_MainTex, i.texcoord) * _Color;
               float4 color2 = tex2D(_SecondTex, i.texcoord) * _Color;
               color.a = i.texcoord.x;
-              color2.a = i.texcoord.x;
+
               return color;
            }
 
