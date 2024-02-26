@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 205900534}
   - component: {fileID: 205900533}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Noise Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

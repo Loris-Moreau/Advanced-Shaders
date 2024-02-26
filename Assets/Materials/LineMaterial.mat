@@ -76,10 +76,10 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Start: 0.25
-    - _Start2: 0.75
+    - _Start: 0.2
+    - _Start2: 0.7
     - _UVSec: 0
-    - _Width: 0.45
+    - _Width: 0.4
     - _Width2: 0.95
     - _ZWrite: 1
     m_Colors:

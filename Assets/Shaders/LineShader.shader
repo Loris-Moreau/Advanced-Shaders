@@ -10,8 +10,6 @@ Shader "Unlit/LineShader"
 
        _Start2("Second Start", Float) = 0.75
        _Width2("Second Width", Float) = 0.75
-
-       //_Amount ("Amount of Lines", Int) = 1
    }
 
    SubShader
@@ -39,9 +37,6 @@ Shader "Unlit/LineShader"
 
            float _Start2;
            float _Width2;
-
-           //int _Amount;
-
 
            struct VertexInput
            {

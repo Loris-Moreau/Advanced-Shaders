@@ -8,7 +8,6 @@ Shader "Unlit/TextureShader"
 
    SubShader
    {
-
         Tags
         {
             "Queue" = "Transparent"

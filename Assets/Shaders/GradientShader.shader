@@ -9,7 +9,6 @@ Shader "Unlit/GradientShader"
 
    SubShader
    {
-
         Tags
         {
             "Queue" = "Transparent"

@@ -7,7 +7,6 @@ Shader "Unlit/SeeThroughShader"
 
    SubShader
    {
-
         Tags
         {
             "Queue" = "Transparent"

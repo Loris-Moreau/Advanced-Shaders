@@ -12,7 +12,6 @@ Shader "Unlit/SqrtShader"
 
    SubShader
    {
-
         Tags
         {
             "Queue" = "Transparent"
