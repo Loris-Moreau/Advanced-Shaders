@@ -3,7 +3,6 @@ Shader "Unlit/VoronoiShader"
 
 Properties
 {
-   //_ColorW("White Color", Color) = (1, 1, 1, 1)
    _Color("Color", Color) = (1, 0, 0, 1)
    _Color2("Second Color", Color) = (0.5, 0.5, 0.5, 1)
    _Noise("Noise Texture", 2D) = "white"{}
@@ -27,7 +26,6 @@ Properties
 
            #include "UnityCG.cginc"
 
-           //fixed4 _ColorW = (1, 1, 1, 1);
            fixed4 _Color;
            fixed4 _Color2;
            uniform sampler2D _Noise;
@@ -55,7 +53,6 @@ Properties
            fixed4 frag (VertexOutput i) : SV_Target
            {
                 fixed4 _ColorW = (1, 1, 1, 1);
-
                 float4 noise = tex2D(_Noise, i.texcoord) * _ColorW;
 
                 return noise;
