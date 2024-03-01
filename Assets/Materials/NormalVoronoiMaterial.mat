@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexF:
+        m_Texture: {fileID: 2800000, guid: 806bad40a8b5f524397af4161e80a86a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -71,6 +75,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Height: 0.2
+    - _HeightFactor: 0.1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -82,8 +87,9 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.54901963, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.84705883, g: 1, b: 1, a: 1}
     - _Color2: {r: 0.078431375, g: 0.5254902, b: 0.67058825, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SecondaryColor: {r: 0.078431375, g: 0.5254902, b: 0.67058825, a: 1}
   m_BuildTextureStacks: []
