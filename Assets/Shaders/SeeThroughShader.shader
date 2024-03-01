@@ -1,4 +1,4 @@
-Shader "Unlit/SeeThroughShader"
+Shader "Custom/SeeThroughShader"
 {
    Properties
    {

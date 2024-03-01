@@ -1,4 +1,4 @@
-Shader "Unlit/LineShader"
+Shader "Custom/LineShader"
 {
    Properties
    {

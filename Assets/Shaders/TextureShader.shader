@@ -1,4 +1,4 @@
-Shader "Unlit/TextureShader"
+Shader "Custom/TextureShader"
 {
    Properties
    {

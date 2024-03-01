@@ -1,4 +1,4 @@
-Shader "Unlit/VoronoiShader"
+Shader "Custom/VoronoiShader"
 {
 
 Properties

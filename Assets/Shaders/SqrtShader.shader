@@ -1,4 +1,4 @@
-Shader "Unlit/SqrtShader"
+Shader "Custom/SqrtShader"
 {
    Properties
    {

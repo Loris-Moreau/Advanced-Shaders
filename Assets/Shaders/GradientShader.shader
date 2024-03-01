@@ -1,10 +1,9 @@
-Shader "Unlit/GradientShader"
+Shader "Custom/GradientShader"
 {
    Properties
    {
        _Color ("Main Color", Color) = (1,1,1,1)
        _MainTex("Main Texture", 2D) = "white"{}
-       _SecondTex("Second Texture", 2D) = "white"{}
    }
 
    SubShader
@@ -26,7 +25,6 @@ Shader "Unlit/GradientShader"
 
            uniform half4 _Color;
            uniform sampler2D _MainTex;
-           uniform sampler2D _SecondTex;
 
            struct VertexInput
            {
@@ -51,9 +49,7 @@ Shader "Unlit/GradientShader"
            half4 frag(VertexOutput i): COLOR    //half4 will be treated as a color
            {
               float4 color = tex2D(_MainTex, i.texcoord) * _Color;
-              float4 color2 = tex2D(_SecondTex, i.texcoord) * _Color;
               color.a = i.texcoord.x;
-
               return color;
            }
 
