@@ -5,8 +5,8 @@ Shader "Unlit/FlagShader"
         _MainTex("Main Texture", 2D) = "white"{}
         _HeightFactor("Height", float) =0.1
         _Speed("Speed", float) = 1
-        _Frequency("Frequency", float) = 0
-        _Amplitude("Amplitude", float) = 0
+        _Frequency("Frequency", float) = 2
+        _Amplitude("Amplitude", float) = 4
     }
     
     SubShader
@@ -49,7 +49,7 @@ Shader "Unlit/FlagShader"
             VertexOutput vert(VertexInput v)
             {
                 VertexOutput o;
-                v.vertex = vertexAnimFlag(v.vertex,v.texcoord);
+                v.vertex = vertexAnimFlag(v.vertex, v.texcoord);
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.texcoord.xy = (v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw);
                 return o;
