@@ -1,4 +1,4 @@
-Shader "Unlit/NormalVoronoiShader"
+Shader "Custom/NormalVoronoiShader"
 { 
     Properties{
         _Color("Color",Color) = (1,1,1,1)
@@ -39,7 +39,7 @@ Shader "Unlit/NormalVoronoiShader"
             {
                 pos.y = pos.y + sin((uv.y - _Time.y * _Speed) * _Frequency) * _Amplitude/100; /* * uv.y*/;
                 pos.x = pos.x + sin((uv.x - _Time.y * _Speed) * _Frequency) * _Amplitude/100; /* * uv.x*/;
-                 
+                
                 return pos;
             }
             
@@ -62,12 +62,11 @@ Shader "Unlit/NormalVoronoiShader"
             {
                 VertexOutput o;
                 v.vertex = vertexAnimFlag(v.vertex,v.texcoord);
-                float4 offset = (v.normal * tex2Dlod(_NoiseTexF, v.texcoord*_NoiseTexF_ST)*_HeightFactor);
+                float4 offset = (v.normal * tex2Dlod(_NoiseTexF, v.texcoord * _NoiseTexF_ST) * _HeightFactor);
                 o.pos = UnityObjectToClipPos(v.vertex + offset);
-                o.texcoord.xy = (v.texcoord.xy * _NoiseTexF_ST.xy + _NoiseTexF_ST.zw);
-                //o.displacement = lerp(_Color,_SecondaryColor,v.vertex.y);
-                float percentage = (v.vertex.y + offset.y) / _HeightFactor;
-                o.displacement = (_Color * percentage + _SecondaryColor * (1-percentage));
+                o.texcoord.xy = v.texcoord.xy * _NoiseTexF_ST.xy + _NoiseTexF_ST.zw;
+                const float percentage = (v.vertex.y + offset.y) / _HeightFactor;
+                o.displacement = (_Color * percentage + _SecondaryColor * (1 - percentage));
                 
                 return o;
             }
