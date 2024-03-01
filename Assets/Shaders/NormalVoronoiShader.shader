@@ -1,11 +1,12 @@
 Shader "Custom/NormalVoronoiShader" 
 { 
-Properties 
-{ 
-_MainTex ("Texture", 2D) = "white" {}
-_Color1 ("First Color", Color) = (1,1,1,1)
-_Color2 ("Second Color", Color) = (1,1,1,1)
-}
+	Properties 
+	{ 
+		_MainTex ("Texture", 2D) = "white" {}
+		_Color1 ("First Color", Color) = (1,1,1,1)
+		_Color2 ("Second Color", Color) = (1,1,1,1)
+		_Height ("Height", Float) = 0.1
+	}
 
 SubShader 
 { 
@@ -18,7 +19,7 @@ Tags
 
 	Pass
 	{
-Blend SrcAlpha OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
 		#pragma vertex vert
@@ -32,6 +33,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 		float4 _MainTex_ST;
 		float4 _Color1;
 		float4 _Color2;
+		float _Height;
 
 		struct VertexInput
 		{
@@ -54,7 +56,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 			o.texcoord.xy = (v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw);
 
 			float displacement = tex2Dlod(_MainTex, v.texcoord * _MainTex_ST);
-			o.pos = UnityObjectToClipPos(v.vertex + (v.normal * displacement * 0.1f));
+			o.pos = UnityObjectToClipPos(v.vertex + (v.normal * displacement * _Height));
 			return o;
 		}
 		

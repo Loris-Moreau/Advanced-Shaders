@@ -18,7 +18,7 @@ Tags
 
 	Pass
 	{
-Blend SrcAlpha OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
 		#pragma vertex vert

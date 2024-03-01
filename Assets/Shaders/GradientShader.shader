@@ -20,10 +20,10 @@ Shader"Custom/GradientShader"
 
            #pragma vertex vert
            #pragma fragment frag
-            uniform half4 _Color;
-            uniform sampler2D _MainTex;
-            uniform float4 _MainTex_ST;
-            uniform float _SquareRoot;
+           uniform half4 _Color;
+           uniform sampler2D _MainTex;
+           uniform float4 _MainTex_ST;
+           uniform float _SquareRoot;
 
             struct VertexInput
             {
