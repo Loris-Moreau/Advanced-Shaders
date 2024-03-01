@@ -1,49 +1,45 @@
-Shader "Custom/MonochromeShader"
+Shader"Custom/MonochromeShader"
 {
+    Properties{
+        _Color("Base Color", Color) = (1,0,0,1)
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        LOD 100
 
-Properties
-{
-   _Color("Color", Color) = (1, 0, 0, 1)   
-}
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
 
-   SubShader
-   {
-       Tags { "RenderType"="Opaque" }
+            #include "UnityCG.cginc"
 
-       Pass
-       {
-           CGPROGRAM
-           #pragma vertex vert
-           #pragma fragment frag
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
 
-           #include "UnityCG.cginc"
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+            };
 
-           fixed4 _Color;
+            fixed4 _Color;
 
-           struct appdata
-           {
-               float4 vertex : POSITION;
-           };
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
 
-           struct v2f
-           {
-               float4 vertex : SV_POSITION;
-           };
-
-           v2f vert (appdata v)
-           {
-               v2f o;
-               o.vertex = UnityObjectToClipPos(v.vertex);
-
-               return o;
-           }
-
-           fixed4 frag (v2f i) : SV_Target
-           {
+            fixed4 frag (v2f i) : SV_Target
+            {
                 return _Color;
-           }
-
-           ENDCG
-       }
-   }
+}
+            ENDCG
+        }
+    }
 }
