@@ -4,13 +4,17 @@ Shader "Custom/IconShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Fill Color", COLOR) = (1,1,1,1)
-        _Scale ("scale", Float) = 1
+        _Scale ("Scale", Float) = 1
         _IsConstSize ("Keep Size Constant", Float) = 1
  
     }
     SubShader
     {
-        Tags { "RenderType"="Fade" "Queue"="Overlay+1000"}
+        Tags 
+        { 
+            "RenderType" = "Fade" 
+            "Queue" = "Overlay+1000"
+        }
         LOD 200
         
         Pass
@@ -29,9 +33,7 @@ Shader "Custom/IconShader"
             #pragma multi_compile_fog
          
             #include "UnityCG.cginc"
-         
- 
-         
+            
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -55,7 +57,7 @@ Shader "Custom/IconShader"
             {
                 v2f o;
                 //o.vertex = UnityObjectToClipPos(v.vertex);
-                float3 pos = mul(UNITY_MATRIX_M ,v.vertex);
+                float3 pos = mul(UNITY_MATRIX_M, v.vertex);
                 float dist = length(pos - _WorldSpaceCameraPos);
  
                 float4x4 view = UNITY_MATRIX_MV ;
@@ -93,18 +95,13 @@ Shader "Custom/IconShader"
                 fixed4 col = tex2D(_MainTex, i.uv);
              
                 // apply fog
-                //UNITY_APPLY_FOG(i.fogCoord, col);
+                UNITY_APPLY_FOG(i.fogCoord, col);
  
                 col = col * _Color;
  
                 return col;
             }
- 
- 
- 
-            ENDCG
- 
- 
+ENDCG
         }
     }
 }
