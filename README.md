@@ -11,3 +11,4 @@
 - Flag
 - Water
 - Outline
+- Cel Shaded
