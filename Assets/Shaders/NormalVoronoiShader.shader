@@ -28,12 +28,15 @@ Shader "Custom/NormalVoronoiShader"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            
             uniform half4 _Color;
             uniform half4 _SecondaryColor;
+            
             uniform sampler2D _NoiseTexF;
             uniform float4 _NoiseTexF_ST;
             uniform sampler2D _NoiseTexS;
             uniform float4 _NoiseTexS_ST;
+            
             uniform float _HeightFactor;
             uniform float _Speed;
             uniform float _Frequency;
