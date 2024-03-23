@@ -42,6 +42,7 @@ Shader "Custom/SeeThroughShader"
 
            half4 frag(VertexOutput i): COLOR   //half4 will be treated as a color
            {
+               _Color.a = 0.25;
                return _Color;
            }
           
