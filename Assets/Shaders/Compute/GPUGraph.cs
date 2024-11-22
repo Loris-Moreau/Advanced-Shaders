@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class GPUGraph : MonoBehaviour
-{
+public class GPUGraph : MonoBehaviour {
+
 	const int maxResolution = 1000;
 
 	static readonly int
@@ -11,26 +11,28 @@ public class GPUGraph : MonoBehaviour
 		timeId = Shader.PropertyToID("_Time"),
 		transitionProgressId = Shader.PropertyToID("_TransitionProgress");
 
-	[SerializeField] ComputeShader computeShader;
+	[SerializeField]
+	ComputeShader computeShader;
 
-	[SerializeField] Material material;
+	[SerializeField]
+	Material material;
 
-	[SerializeField] Mesh mesh;
+	[SerializeField]
+	Mesh mesh;
 
 	[SerializeField, Range(10, maxResolution)]
 	int resolution = 10;
 
-	[SerializeField] FunctionLibrary.FunctionName function;
+	[SerializeField]
+	FunctionLibrary.FunctionName function;
 
-	public enum TransitionMode
-	{
-		Cycle,
-		Random
-	}
+	public enum TransitionMode { Cycle, Random }
 
-	[SerializeField] TransitionMode transitionMode;
+	[SerializeField]
+	TransitionMode transitionMode;
 
-	[SerializeField, Min(0f)] float functionDuration = 1f, transitionDuration = 1f;
+	[SerializeField, Min(0f)]
+	float functionDuration = 1f, transitionDuration = 1f;
 
 	float duration;
 
@@ -40,30 +42,24 @@ public class GPUGraph : MonoBehaviour
 
 	ComputeBuffer positionsBuffer;
 
-	void OnEnable()
-	{
+	void OnEnable () {
 		positionsBuffer = new ComputeBuffer(maxResolution * maxResolution, 3 * 4);
 	}
 
-	void OnDisable()
-	{
+	void OnDisable () {
 		positionsBuffer.Release();
 		positionsBuffer = null;
 	}
 
-	void Update()
-	{
+	void Update () {
 		duration += Time.deltaTime;
-		if (transitioning)
-		{
-			if (duration >= transitionDuration)
-			{
+		if (transitioning) {
+			if (duration >= transitionDuration) {
 				duration -= transitionDuration;
 				transitioning = false;
 			}
 		}
-		else if (duration >= functionDuration)
-		{
+		else if (duration >= functionDuration) {
 			duration -= functionDuration;
 			transitioning = true;
 			transitionFunction = function;
@@ -73,33 +69,33 @@ public class GPUGraph : MonoBehaviour
 		UpdateFunctionOnGPU();
 	}
 
-	void PickNextFunction()
-	{
-		function = transitionMode == TransitionMode.Cycle
-			? FunctionLibrary.GetNextFunctionName(function)
-			: FunctionLibrary.GetRandomFunctionNameOtherThan(function);
+	void PickNextFunction () {
+		function = transitionMode == TransitionMode.Cycle ?
+			FunctionLibrary.GetNextFunctionName(function) :
+			FunctionLibrary.GetRandomFunctionNameOtherThan(function);
 	}
 
-	void UpdateFunctionOnGPU()
-	{
+	void UpdateFunctionOnGPU () {
 		float step = 2f / resolution;
 		computeShader.SetInt(resolutionId, resolution);
 		computeShader.SetFloat(stepId, step);
 		computeShader.SetFloat(timeId, Time.time);
-		if (transitioning)
-		{
+		if (transitioning) {
 			computeShader.SetFloat(
 				transitionProgressId,
 				Mathf.SmoothStep(0f, 1f, duration / transitionDuration)
 			);
 		}
 
-		var kernelIndex = (int)function + (int)(transitioning ? transitionFunction : function) * FunctionLibrary.FunctionCount;
+		var kernelIndex =
+			(int)function +
+			(int)(transitioning ? transitionFunction : function) *
+			FunctionLibrary.FunctionCount;
 		computeShader.SetBuffer(kernelIndex, positionsId, positionsBuffer);
 
 		int groups = Mathf.CeilToInt(resolution / 8f);
 		computeShader.Dispatch(kernelIndex, groups, groups, 1);
-		
+
 		material.SetBuffer(positionsId, positionsBuffer);
 		material.SetFloat(stepId, step);
 		var bounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
