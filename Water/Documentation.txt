@@ -1,0 +1,79 @@
+# Mathematical Surfaces Sculpting with Numbers
+
+* Create a function library.
+* Use a delegate and an enumeration type.
+* Display 2D functions with a grid.
+* Define surfaces in 3D space.
+
+---
+
+Amount of Points = Resolution^2
+res = 1000 -> Amount of Points = 1000^2 = 1 000 000
+
+---
+1. Function Library
+	1.1 Library Class
+	1.2 Function Method
+	1.3 Implicitly using a Type
+	1.4 A Second Function
+	1.5 Selecting Functions in the Editor
+	1.6 Ripple Function
+2. Managing Methods
+Delegates
+An Array of Delegates
+Enumerations
+3. Adding Another Dimension
+	3.1 3D Colors
+	3.2 Upgrading the Functions
+	3.3 Creating a Grid of Points
+	3.4 Better Visuals
+	3.5 Incorporating Z
+4. Leaving the Grid
+	4.1 Three-Dimensional Functions
+	4.2 Creating a Sphere
+	4.3 Perturbing the Sphere
+	4.4 Creating a Torus
+	
+---
+	
+# Measuring Perfomances
+
+just showing the frame rate (FPS)
+
+---
+
+# Compute Shaders
+
+1. Moving Work to the GPU
+	1.1 Resolution 200
+	1.2 GPU Graph
+	1.3 Compute Buffer
+	1.4 Compute Shader
+	1.5 Compute Threads
+	1.6 UV Coordinates
+	1.7 Setting Positions
+	1.8 Wave Function
+	1.9 Dispatching a Compute Shader Kernel
+2. Procedural Drawing
+	2.1 Drawing Many Meshes
+	2.2 Retrieving the Positions
+	2.3 Creating a Transformation Matrix
+	2.4 Going for a Million
+	2.5 URP
+	2.6 Variable Resolution
+3. GPU Function Library
+	3.1 All Functions
+	3.2 Macros
+	3.3 Morphing Functions
+	3.4 Function Count Property
+	3.5 More Details
+
+
+
+
+
+
+
+
+
+
